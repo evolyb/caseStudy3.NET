@@ -1,0 +1,50 @@
+﻿@model SimpleWeb.Models.Phone
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SimpleWeb.Models.Brand> listBrands = SimpleWeb.Methods.BrandService.getAllBrand();
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Admin/PhoneManage">Admin</a></li>
+        <li class="breadcrumb-item">Edit</li>
+    </ol>
+</div>
+<h2>Điện thoại @Model.name</h2>
+<div class="row">
+    <div class="col-7">
+        <img style="width:550px" src="@Model.imgSrc" alt="Not" />
+    </div>
+    <div class="col-5">
+        <form action="~/Phone/Edit" method="post">
+            <input value="@Model.id" name="id" hidden />
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="@Model.name">
+            </div>
+            <div class="form-group">
+                <label for="price">Price (USD)</label>
+                <input type="text" class="form-control" id="price" placeholder="Enter name" name="price" value="@Model.price">
+            </div>
+            <div class="form-group">
+                <label for="shortDescription">Short Description</label>
+                <input type="text" class="form-control" id="shortDescription" placeholder="Enter name" name="shortDescription" value="@Model.shortDescription">
+            </div>
+            <div class="form-group">
+                <label for="fullDescription">Full Description</label>
+                <input type="text" class="form-control" id="fullDescription" placeholder="Enter name" name="fullDescription" value="@Model.fullDescription">
+            </div>
+            <div class="form-group">
+                <label for="brand_id">Brand</label>
+                <select class="form-control" id="brand_id" name="brand_id">
+                    @foreach (SimpleWeb.Models.Brand brand in listBrands)
+                    {
+                        <option @(brand.id == Model.brand_id? "selected" : "") value="@brand.id">@brand.name</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

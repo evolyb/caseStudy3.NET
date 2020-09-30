@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h2 class="card-title text-center">Sign up</h2>
+                <form class="form-signin" action="~/User/Signup" method="post">
+                    <div class="form-group">
+                        <label for="inputEmail">Username</label>
+                        <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="username" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname">FullName</label>
+                        <input type="text" id="fullname" class="form-control" placeholder="FullName" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" id="phoneNumber" class="form-control" placeholder="Phone Number" name="phoneNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="Address" name="address" required>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

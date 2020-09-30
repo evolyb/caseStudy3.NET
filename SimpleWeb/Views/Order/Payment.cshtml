@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Cart">Cart</a></li>
+        <li class="breadcrumb-item">Confirm</li>
+    </ol>
+</div>
+<h2>Payment Confirm Information</h2>
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h2 class="card-title text-center">Payment Information</h2>
+                <form class="form-signin" action="~/Order/Add" method="post">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" class="form-control" placeholder="fullname" name="fullname" required value="@Model.fullname">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" id="phoneNumber" class="form-control" placeholder="phoneNumber" name="phoneNumber" required value="@Model.phoneNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="address" name="address" required  value="@Model.address">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

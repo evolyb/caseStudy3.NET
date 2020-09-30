@@ -1,0 +1,45 @@
+﻿@model SimpleWeb.Models.Cart
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item">Cart</li>
+    </ol>
+</div>
+<table class="table table-bordered table-hover" style="font-size:25px; vertical-align:middle">
+    <thead>
+        <tr style="text-align:center">
+            <th scope="col" width="15%">Img</th>
+            <th scope="col">Name</th>
+            <th scope="col" width="15%">Quantity</th>
+            <th scope="col" width="15%">Price</th>
+            <th scope="col" width="15%">Total</th>
+            <th scope="col" width="15%">Delete</th>
+        </tr>
+    </thead>
+    @foreach (SimpleWeb.Models.ItemLine itemLine in Model.listItemsLine)
+    {
+        
+<tr style="text-align:center; ">
+    <td style="vertical-align:middle"><img style="width:150px" src="@itemLine.phone.imgSrc" alt="Photo" /></td>
+    <td style="vertical-align:middle">@itemLine.phone.name</td>
+    <td style="vertical-align:middle">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="~/Cart/Minus/@itemLine.phone.id" class="btn btn-secondary">-</a>
+            <button type="button" class="btn btn-secondary">@itemLine.quantity</button>
+            <a href="~/Cart/Add/@itemLine.phone.id" class="btn btn-secondary">+</a>
+        </div>
+    </td>
+    <td style="vertical-align:middle">@itemLine.price</td>
+    <td style="vertical-align:middle">@itemLine.getTotal()</td>
+    <td style="vertical-align:middle"><a class="btn btn-danger" href="~/Cart/Remove/@itemLine.phone.id">Delete</a></td>
+</tr>
+    }
+</table>
+<div class="col-4 offset-9"><h1>Total: @Model.getTotalPrice() USD</h1></div>
+<div class="col-4 offset-9"><a style="width:200px" class="btn btn-primary" href="~/Order/Payment">Pay</a></div>
+

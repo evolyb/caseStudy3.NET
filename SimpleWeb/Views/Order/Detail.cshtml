@@ -1,0 +1,68 @@
+﻿
+@model SimpleWeb.Models.Order
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Admin/OrderManage">Admin</a></li>
+        <li class="breadcrumb-item">Detail</li>
+    </ol>
+</div>
+<h2>Order Detail</h2>
+<div class="col-8">
+    <table style="font-size:20px" class="table table-hover table-borderless">
+        <tr>
+            <td>Customer Name:</td>
+            <td>@Model.customerName</td>
+        </tr>
+        <tr>
+            <td>PhoneNumber:</td>
+            <td>@Model.phoneNumber</td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>@Model.address</td>
+        </tr>
+    </table>
+</div>
+<table style="font-size:20px;text-align:center" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>Img</td>
+            <td>Phone</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>Total Price</td>
+        </tr>
+    </thead>
+    @foreach (SimpleWeb.Models.ItemLine itemLine in Model.itemLines)
+    {
+<tr>
+    <td>
+        <img style="width:50px" src="@itemLine.phone.imgSrc" alt="Not" />
+    </td>
+    <td>
+        @itemLine.phone.name
+    </td>
+    <td>
+        @itemLine.quantity
+    </td>
+    <td>
+        @itemLine.phone.price
+    </td>
+    <td>
+        @itemLine.getTotal()
+    </td>
+</tr>
+    }
+</table>
+<div class="row">
+    <h2 class="ml-auto" style="margin-right:20px">
+        Total: @Model.getTotalPrice() USD
+    </h2>
+</div>
+

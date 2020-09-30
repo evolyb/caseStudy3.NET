@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "OrderManage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item">ADMIN</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-3">
+        <h2>ADMIN</h2>
+    </div>
+    <div class="col-9">
+        <h2>Order Manage</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        @Html.Partial("_Admin_Menu")
+    </div>
+    <div class="col-9">
+
+        <table class="table table-bordered table-hover" style="text-align:center; font-size:15px">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Customer</td>
+                    <td>Phone</td>
+                    <td>Address</td>
+                    <td>Total Price (USD)</td>
+                </tr>
+            </thead>
+            @foreach (SimpleWeb.Models.Order order in Model)
+            {
+        <tr style="vertical-align:middle">
+            <td style="vertical-align:middle"><a href="~/Order/Detail/@order.id">@order.id</a></td>
+            <td style="vertical-align:middle">@order.customerName</td>
+            <td style="vertical-align:middle">@order.phoneNumber</td>
+            <td style="vertical-align:middle">@order.address</td>
+            <td style="vertical-align:middle">@order.getTotalPrice()</td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+

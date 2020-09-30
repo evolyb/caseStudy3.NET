@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "UserManage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    SimpleWeb.Models.User currentUser = (SimpleWeb.Models.User)Session["currentUser"];
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item">ADMIN</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-3">
+        <h2>ADMIN</h2>
+    </div>
+    <div class="col-9">
+        <h2>User Manage</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        @Html.Partial("_Admin_Menu")
+    </div>
+    <div class="col-9">
+
+        <table class="table table-bordered table-hover" style="text-align:center; font-size:15px">
+            <thead>
+                <tr>
+                    <td>Username</td>
+                    <td>FullName</td>
+                    <td>Phone</td>
+                    <td>Role</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            @foreach (SimpleWeb.Models.User user in Model)
+            {
+        <tr style="vertical-align:middle">
+            <td style="vertical-align:middle">@user.username</td>
+            <td style="vertical-align:middle">@user.fullname</td>
+            <td style="vertical-align:middle">@user.phoneNumber</td>
+            <td style="vertical-align:middle">@user.role.name</td>
+            <td style="vertical-align:middle">
+                @if (@currentUser.username.Equals("admin") && user.username.Equals("admin"))
+                {
+                    <a style="padding:5px" href="~/User/Edit/@user.id" class="btn btn-primary">Edit</a>
+                }
+                @if (!user.username.Equals("admin"))
+                {
+                    <a style="padding:5px" href="~/User/Edit/@user.id" class="btn btn-primary">Edit</a>
+                }
+
+                @if (!@user.username.Equals("admin"))
+                {
+                    <a style="padding:5px" href="~/User/Remove/@user.id" class="btn btn-danger">Delete</a>
+                }
+
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>

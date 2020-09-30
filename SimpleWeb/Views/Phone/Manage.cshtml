@@ -1,0 +1,38 @@
+﻿@model List<SimpleWeb.Models.Phone> 
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item">Manage</li>
+    </ol>
+</div>
+<h2>Phone Manage</h2>
+<table class="table table-bordered table-hover" style="text-align:center; font-size:15px">
+    <thead >
+        <tr>
+            <td style="width:50px">Img</td>
+            <td style="width:200px"><a href="~/Phone/Manage/Name">Name</a></td>
+            <td style="width:150px"><a href="~/Phone/Manage/Brand">Brand</a></td>
+            <td><a href="~/Phone/Manage/Price">Price</a></td>
+            <td>Short Description</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    @foreach (SimpleWeb.Models.Phone phone in Model)
+    {
+<tr style="vertical-align:middle">
+    <td style="vertical-align:middle"><img style="width:50px" src="@phone.imgSrc" alt="IMG" /></td>
+    <td style="vertical-align:middle"><a href="~/Phone/Detail/@phone.id">@phone.name</a></td>
+    <td style="vertical-align:middle">@phone.getBrand().name</td>
+    <td style="vertical-align:middle">@phone.price</td>
+    <td style="vertical-align:middle">@phone.shortDescription</td>
+    <td style="vertical-align:middle">
+        <a href="~/Phone/Edit/@phone.id" class="btn btn-primary">Edit</a>
+        <a href="~/Phone/Remove/@phone.id" class="btn btn-danger">Delete</a>
+    </td>
+</tr>
+    }
+</table>

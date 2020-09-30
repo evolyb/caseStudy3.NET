@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "PhoneManage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item">ADMIN</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-3">
+        <h2>ADMIN</h2>
+    </div>
+    <div class="col-9">
+        <h2>Phone Manage</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        @Html.Partial("_Admin_Menu")
+    </div>
+    <div class="col-9">
+        
+        <table class="table table-bordered table-hover" style="text-align:center; font-size:15px">
+            <thead>
+                <tr>
+                    <td>Img</td>
+                    <td >Name</a></td>
+                    <td><a href="~/Phone/Manage/Brand">Brand</a></td>
+                    <td><a href="~/Phone/Manage/Price">Price</a></td>
+                    <td style="width:150px">Short Description</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            @foreach (SimpleWeb.Models.Phone phone in Model)
+            {
+                <tr style="vertical-align:middle">
+                    <td style="vertical-align:middle"><img style="width:50px" src="@phone.imgSrc" alt="IMG" /></td>
+                    <td style="vertical-align:middle"><a href="~/Phone/Detail/@phone.id">@phone.name</a></td>
+                    <td style="vertical-align:middle">@phone.getBrand().name</td>
+                    <td style="vertical-align:middle">@phone.price</td>
+                    <td style="vertical-align:middle">@phone.shortDescription</td>
+                    <td style="vertical-align:middle">
+                        <a style="padding:5px" href="~/Phone/Edit/@phone.id" class="btn btn-primary">Edit</a>
+                        <a style="padding:5px" href="~/Phone/Remove/@phone.id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

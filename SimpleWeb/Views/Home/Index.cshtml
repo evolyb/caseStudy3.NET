@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@Html.Partial("_SlideShow")
+
+<div class="container">
+    <div class="row">
+        <ol class="breadcrumb" style="font-size:20px">
+            <li class="breadcrumb-item"><a href="~/">Home</a></li>
+            <li class="breadcrumb-item"><a href="~/Phone">Tất cả sản phẩm</a></li>
+            <li class="breadcrumb-item active">Sản phẩm nổi bật</li>
+        </ol>
+    </div>
+    <div class="row" style="padding:10px">
+        @foreach (var phone in Model)
+        {
+            <div class="col-3">
+                <div class="card">
+                    <a href="../Phone/Detail/@phone.id"><img class="card-img-top" src=@phone.imgSrc alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@phone.name</h5>
+                        <p class="card-text">@phone.shortDescription</p>
+                        <p class="btn-danger" style="border-radius:10px; width:70%; text-align:center; height: 20px"> @phone.price USD</p>
+                        <a style="padding:5px" href="~/Cart/Add/@phone.id" class="btn btn-primary">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="row" style="margin-top:20px">
+        <img style="width:100%" src="~/Content/images/footer.jpg" alt="Not Found" />
+       
+    </div>
+</div>

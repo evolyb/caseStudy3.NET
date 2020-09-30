@@ -1,0 +1,58 @@
+﻿@{
+
+    int count = 0;
+    if (Session["cart"] != null)
+    {        
+        foreach (SimpleWeb.Models.ItemLine itemLine in ((SimpleWeb.Models.Cart)Session["cart"]).listItemsLine){
+            count += itemLine.quantity;
+        }
+    }
+}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 10px; padding: 5px">
+    <a class="navbar-brand" href="~/">
+        <img style="width:40px" src="~/Content/images/home.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto" style="font-size:15px">
+            <li class="nav-item active">
+                <a class="nav-link" href="~/Home/Index">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/Home/About">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/Home/Contact">Contact</a>
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-sm-0 " style="margin-right:10px" action="../Phone/Search" method="post">
+            <input style="height: 20px" class="form-control mr-sm-2" type="text" placeholder="Search" name="searchValue">
+            <button style="height: 30px; padding: 5px" class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a href="~/Cart"><img style="width:50px" src="~/Content/images/cart.png" alt="Cart" /><span class="badge badge-primary">@count</span></a>
+        @if (Session["currentUser"] == null)
+        {
+            <a href="~/Login" style="color:white; font-size:20px; margin-left:20px">Login/Register</a>
+        }
+        else
+        {
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:20px;color:white">
+                        @(((SimpleWeb.Models.User)Session["currentUser"]).username)
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @if (((SimpleWeb.Models.User)Session["currentUser"]).role.name.Equals("ADMIN"))
+                        {
+                            <a class="dropdown-item" href="~/Admin">ADMIN</a>
+                        }
+                        <a class="dropdown-item" href="~/Login/Logout">Log Out</a>
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
+</nav>

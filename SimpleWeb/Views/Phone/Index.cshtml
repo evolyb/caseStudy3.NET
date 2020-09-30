@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item">Tất cả sản phẩm</li>
+    </ol>
+</div>
+@for (int i = 0; i<@ViewBag.ListBrand.Count; i++)
+{
+    <h2 style="margin-top:20px">@ViewBag.ListBrand[i]</h2>
+    <div class="row">
+        @foreach (var phone in @ViewBag.List[i])
+        {
+            <div class="col-3">
+                <div class="card">
+                    <a href="../Phone/Detail/@phone.id"><img class="card-img-top" src=@phone.imgSrc alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@phone.name</h5>
+                        <p class="card-text">@phone.shortDescription</p>
+                        <p class="btn-danger" style="border-radius:10px; width:70%; text-align:center; height: 20px"> @phone.price USD</p>
+                        <a style="padding:5px" href="~/Cart/Add/@phone.id" class="btn btn-primary">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

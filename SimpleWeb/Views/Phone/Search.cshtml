@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top:20px">Kết quả trả về: @Model.Count kết quả</h2>
+<div class="row" style="">
+    @foreach (var phone in Model)
+    {
+        <div class="col-3">
+            <div class="card">
+                <a href="../Phone/Detail/@phone.id"><img class="card-img-top" src=@phone.imgSrc alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title">@phone.name</h5>
+                    <p class="card-text">@phone.shortDescription</p>
+                    <p class="btn-danger" style="border-radius:10px; width:70%; text-align:center; height: 20px"> @phone.price USD</p>
+                    <a style="padding:5px" href="~/Cart/Add/@phone.id" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

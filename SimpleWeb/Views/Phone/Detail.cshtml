@@ -1,0 +1,36 @@
+﻿@model SimpleWeb.Models.Phone
+@{
+    ViewBag.Title = "Detail";
+}
+<div class="row">
+    <ol class="breadcrumb" style="font-size:20px">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Phone">Tất cả sản phẩm</a></li>
+        <li class="breadcrumb-item active">Detail</li>
+    </ol>
+</div>
+<h2>Điện thoại @Model.name</h2>
+<div class="row">
+    <div class="col-5">
+        <img style="width: 100%" src="@Model.imgSrc" alt="Not Found" />
+    </div>
+   
+    <div class="card-body col-4">
+        <h2>Thông số kỹ thuật</h2>
+        <hr />
+        <h4 class="card-title">Màn hình</h4>
+        <p class="card-text">Dynamic AMOLED, 6.8", Quad HD+ (2K+).</p>
+        <hr />
+        <h4 class="card-title">Hệ điều hành</h4>
+        <p class="card-text">Android 9.0 (Pie)</p>
+        <hr />
+        <h4 class="card-title">Camera sau</h4>
+        <p class="card-text">Chính 12 MP & Phụ 12 MP, 16 MP, TOF 3D</p>
+        <hr />
+        <h4 class="card-title">CPU</h4>
+        <p class="card-text">Exynos 9825 8 nhân</p>
+        <a href="~/Cart/Add/@Model.id" class="btn btn-primary">Add To Cart</a>
+    </div>
+    
+
+</div>
